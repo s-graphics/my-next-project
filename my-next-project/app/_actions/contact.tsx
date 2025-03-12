@@ -51,7 +51,7 @@ export async function createContactData(_prevState:any,formData:FormData){
       };
     }
 const result = await fetch(
-    "https:api.hsforms.com/submissions/vv3/integration/submit/${process.env.HUBSPOT_PORTAL_ID}/${process.env.HUBSPOT_FORM_ID}",
+    "https://api.hsforms.com/submissions/vv3/integration/submit/${process.env.HUBSPOT_PORTAL_ID}/${process.env.HUBSPOT_FORM_ID}",
     {
         method:"POST",
         headers:{
@@ -96,7 +96,7 @@ await result.json();
     return{
     status:"error",
     message:"お問い合わせに失敗しました",
-    }
+    };
 }
 
     return{status:"success",message:"OK"};
