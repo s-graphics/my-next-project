@@ -32,7 +32,7 @@ export default async function Home(){
         <h2 className={styles.newsTitle}>News</h2>
         <NewsList news={data.contents} />
         <div className={styles.newsLink}>
-<ButtonLink href="/news">もっとみる</ButtonLink>
+<ButtonLink href="/news">MORE</ButtonLink>
         </div>
       </section>
     </>
