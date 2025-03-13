@@ -1,8 +1,12 @@
+
+import { Metadata } from "next";
 import {notFound} from "next/navigation";
 import {getNewsDetail} from "@/app/_libs/microcms";
 import Article from "@/app/_components/Article";
 import ButtonLink from "@/app/_components/ButtonLink";
 import styles from "./page.module.css";
+import { SearchParamsContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime";
+import { metadata } from "../layout";
 
 type Props = {
     params:{
@@ -13,6 +17,21 @@ type Props = {
     };
 };
 
+export async function generateMetadata({params,searchParams}:Props):Promise<Metadata>{
+    const data = await getNewsDetail(params.slug,{
+        draftKey:searchParams.dk,
+    });
+
+    return{
+        title:data.title,
+        description:data.description,
+        openGraph:{
+        title:data.title,
+        description:data.description,
+        images:[data?.thumbnail?.url ?? ""],
+    },
+};
+}
 export default async function Page({params,searchParams}:Props){
     const data = await getNewsDetail(params.slug,{
         draftKey:searchParams.dk,
